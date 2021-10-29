@@ -12,17 +12,26 @@ class Company:
 
     def hire(self, employee, position, salary):
         """Hire an employee at some position and define the salary."""
-        employee.company = self.name
-        employee.position = position
-        employee.salary = salary
+        if not employee.company:
+            employee.company = self.name
+            employee.position = position
+            employee.salary = salary
+        else:
+            print(f"{employee.first_name} {employee.last_name} is already working"
+                  f" at the company {employee.company}.")
 
     def fire(self, employee, position):
         """Fire an employee from some position."""
-        if employee.company == self.name and employee.position == position:
-            employee.company = None
-            employee.position = None
-            employee.salary = None
-        else:
-            print(f'The employee {employee.first_name} {employee.last_name} is'
-                  f'not working at company {self.name} or is '
-                  f'not working at the position {position}.')
+        match employee.company:
+            case self.name:
+                if employee.position == position:
+                    employee.company = None
+                    employee.position = None
+                    employee.salary = None
+                else:
+                    print(f'The employee {employee.first_name} {employee.last_name} is'
+                          f' working at the company {self.name} but is '
+                          f'not working at the position {position}.')
+            case _:
+                print(f'The employee {employee.first_name} {employee.last_name} is'
+                      f' not working at the company {self.name}.')
