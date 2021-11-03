@@ -39,6 +39,7 @@ class Employee2:
         self.company.ans_quit = str(input('\n'+nasterisk(len(s1)+2)+s1+nasterisk(len(s1)+2)+'\n'+s2))
         match self.company.ans_quit.lower():
             case 'now':
+                self.company.employee_list.remove(self)
                 self.company = None
                 self.salary = 0
                 self.position = None

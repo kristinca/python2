@@ -6,11 +6,11 @@ class Company2:
 
     months_notice = 2
 
-    def __init__(self, name, address, company_id, answer_quit=None):
+    def __init__(self, name, address, company_id, employee_list=[], answer_quit=None):
         self.name = name
         self.address = address
         self.company_id = company_id
-        self.employee_list = []
+        self.employee_list = employee_list
         self.answer_quit = answer_quit
 
     def hire(self, employee, position, salary):
@@ -25,7 +25,7 @@ class Company2:
         s2 = f'If you accept this offer, enter Y, otherwise enter N ...\t'
 
         employee.job_offer_answer = str(input(
-            nasterisk(len(s1)+2)+'\n'+s1+nasterisk(len(s1)+2)+'\n'+s2))
+            '\n'+nasterisk(len(s1)+2)+'\n'+s1+nasterisk(len(s1)+2)+'\n'+s2))
         match employee.job_offer_answer.lower():
             case 'y':
                 employee.company = self
