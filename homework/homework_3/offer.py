@@ -44,8 +44,8 @@ class Offer:
         if not isinstance(company, Company3):
             raise Exception(f"{company} must be instance of class Company")
         elif employee.company:
-            raise Exception(f"{Employee3.full_name(employee)} is already employed.")
-                            # in f" {employee.company}" ???)
+            raise Exception(f"{Employee3.full_name(employee)} is already employed"
+                            f" in {employee.company.return_self()}")
 
         offer = employee.offers.get(company.company_id)
         if not offer:
