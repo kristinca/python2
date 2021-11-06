@@ -64,5 +64,5 @@ class Employee3:
             info['company'] = Company3.return_self(self.company)
         else:
             info['company'] = None
-        info['job_offers'] = self.offers   # ???
+        info['job_offers'] = self.offers
         return info

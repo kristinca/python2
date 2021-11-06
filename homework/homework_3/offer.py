@@ -37,34 +37,33 @@ class Offer:
         print(offer)
 
     def receive_offer(self, employee):
-        employee.offers[self.company.company_id] = self
+        employee.offers[self.company.company_id] = self.position
 
-    @staticmethod
-    def accept_offer(employee, company):
-        if not isinstance(company, Company3):
-            raise Exception(f"{company} must be instance of class Company")
+    def accept_offer(self, employee):
+        if not isinstance(self.company, Company3):
+            raise Exception(f"{self.company} must be instance of class Company")
         elif employee.company:
             raise Exception(f"{Employee3.full_name(employee)} is already employed"
                             f" in {employee.company.return_self()}")
 
-        offer = employee.offers.get(company.company_id)
+        offer = self.employee.offers.get(self.company.company_id)
+        # print(offer)
         if not offer:
-            raise Exception(f"No offer received from {company}")
+            raise Exception(f"No offer received from {self.company.name}")
 
-        employee.company = offer.company
-        employee.salary = offer.salary
-        employee.position = offer.position
-        offer.company.employee_list.append(employee)
+        employee.company = self.company
+        employee.salary = self.salary
+        employee.position = self.position
+        self.company.employee_list.append(employee.full_name())
 
-        print(f"{Employee3.full_name(employee)} accepted the offer from company {Company3.company_name(company)}")
+        print(f"\n{Employee3.full_name(employee)} accepted the offer from company {Company3.company_name(self.company)}\n")
 
-        del employee.offers[offer.company.company_id]
+        del employee.offers[self.company.company_id]
 
     def serialize(self):
         print(self.__str__())
 
     def __str__(self):
-        # return f"Offer from {self.company} to {self.employee}"
         info = dict()
         comp_id = self.company.company_id
         info[comp_id] = self.position
