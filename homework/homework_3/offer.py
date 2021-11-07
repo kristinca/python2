@@ -43,7 +43,7 @@ class Offer:
         if not isinstance(self.company, Company3):
             raise Exception(f"{self.company} must be instance of class Company")
         elif employee.company:
-            raise Exception(f"{Employee3.full_name(employee)} is already employed"
+            raise Exception(f"{self.employee.full_name()} is already employed"
                             f" in {employee.company.return_self()}")
 
         offer = self.employee.offers.get(self.company.company_id)
@@ -56,9 +56,11 @@ class Offer:
         employee.position = self.position
         self.company.employee_list.append(employee.full_name())
 
-        print(f"\n{Employee3.full_name(employee)} accepted the offer from company {Company3.company_name(self.company)}\n")
+        # del self.employee.offers[self.employee.company.company_id]
+        employee.delete_offers()
 
-        del employee.offers[self.company.company_id]
+        print(f"\n{Employee3.full_name(employee)} accepted the offer from company "
+              f"{Company3.company_name(self.company)}\n")
 
     def serialize(self):
         print(self.__str__())
