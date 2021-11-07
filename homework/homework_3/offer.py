@@ -28,13 +28,13 @@ class Offer:
 
         self.receive_offer(employee)
 
-    @staticmethod
-    def make_offer(company, employee, salary, position):
-        if not isinstance(employee, Employee3):
-            raise Exception(f"{employee} is not instance of class Employee. Can't make offer.")
-
-        offer = Offer(company, employee, salary, position)
-        print(offer)
+    # @staticmethod
+    # def make_offer(company, employee, salary, position):
+    #     if not isinstance(employee, Employee3):
+    #         raise Exception(f"{employee} is not instance of class Employee. Can't make offer.")
+    #
+    #     offer = Offer(company, employee, salary, position)
+    #     print(offer)
 
     def receive_offer(self, employee):
         employee.offers[self.company.company_id] = self.position
