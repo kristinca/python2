@@ -19,7 +19,7 @@ class Offer:
             raise Exception(f"{position} is not instance of String. Can't make offer.")
 
         if salary < self.minimum_pay:
-            raise Exception(f"Salary provided under minimum wage of {Offer.minimum_pay}")
+            raise Exception(f"Salary provided under minimum wage of {self.minimum_pay}")
 
         self.company = company
         self.employee = employee
