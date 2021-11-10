@@ -174,8 +174,6 @@ class Offer:
         return f"Offer from {self.company} to {self.employee}"
 
 
-# Create class Developer and class Accountant, should inherit from Employee
-# two class attributes -> 1st. position, 2nd. asset -> "coding", "calculation"
 class Developer(Employee):
     position = "Developer"
     asset = "coding"
