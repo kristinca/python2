@@ -1,6 +1,7 @@
 import tkinter as tk
 import requests
 
+
 API_KEY =
 
 
@@ -34,31 +35,36 @@ currency = rates1.keys()
 
 root = tk.Tk()
 root.title("A very simple app")
-root.geometry("600x400")
+root.geometry("400x200")
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
 root.resizable(False, False)
 
-frame = tk.Frame(root, padx=50, pady=50)
-frame.pack()
+frame = tk.Frame(root, padx=50, pady=50, bg='#66CC66')
+frame.grid(row=0, column=0, sticky='nsew')
 
-label1 = tk.Label(frame, pady=20, text='Currency Converter', font='24')
-label1.pack()
+label1 = tk.Label(frame, pady=10, padx=10, text='Currency Converter', font='24', bg='#ff4d4d')
+label1.grid(row=0, column=3, sticky=(tk.W + tk.E))
+
 
 clicked = tk.StringVar()
 click = str(clicked.get())
-
+entry_vals = tk.Entry(frame, width=10)
+entry_vals.grid(row=6, column=2)
 
 def show():
-    myLbl = tk.Label(root, text=rates1.get(str(clicked.get()))).pack()
+    global myLbl
+    myLbl.destroy()
+    myLbl = tk.Label(frame, text=(rates1.get(clicked.get())*int(entry_vals.get())))
+    myLbl.grid(row=6, column=3)
 
+button1 = tk.Button(frame, text="EUR")
+button1.grid(row=4, column=2)
 
-button1 = tk.Button(frame, text="Choose a currency", command=show)
-button1.pack()
+button2 = tk.Button(frame, text='CONVERT', command=lambda: show())
+button2.grid(row=4, column=4)
 
+drop = tk.OptionMenu(frame, clicked, *rates1.keys())
 
-drop = tk.OptionMenu(root, clicked, *rates1.keys())
-
-drop.pack()
-
+drop.grid(row=4, column=3)
 root.mainloop()
