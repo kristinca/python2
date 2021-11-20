@@ -9,7 +9,7 @@ class ExchangeRate:
 
     def __init__(self, api_key, *args, **kwargs):
 
-        self.URL =
+        self.URL = f'http://api.exchangeratesapi.io/v1/latest?access_key={api_key}'
         self.api_key = api_key
         self.url = self.URL.format(api_key=api_key)
 
@@ -51,6 +51,8 @@ clicked = tk.StringVar()
 click = str(clicked.get())
 entry_vals = tk.Entry(frame, width=10)
 entry_vals.grid(row=6, column=2)
+
+myLbl = tk.Label(frame)
 
 def show():
     global myLbl
