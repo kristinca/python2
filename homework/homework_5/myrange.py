@@ -6,7 +6,7 @@ class MyRange:
     def __init__(self, number_start, number_end, *args, **kwargs):
         self.number_start = number_start
         self.number_end = number_end
-        self.list1 = [i for i in range(self.number_start, self.number_end)]
+        self.list1 = [i for i in range(self.number_start, self.number_end+1)]
         self.it = iter(self.list1)
 
     def iterator(self, to_do):
@@ -56,21 +56,21 @@ class FrameOne(tk.Frame):
 
         self.config(bg="#0D5176")
 
-        self.enter_label = tk.Label(self, text='START', font='Helvetica 18',
+        self.enter_label = tk.Label(self, text='START', width=7, font='Helvetica 15',
                                     bg='#0D98BA', borderwidth=5, relief='raised')
         self.enter_label.grid(row=0, column=0, pady=30)
 
         self.enter_from = tk.Entry(self, width=12, borderwidth=5)
         self.enter_from.grid(row=1, column=0, padx=30)
 
-        self.to_label = tk.Label(self, text='END', font='Helvetica 18',
+        self.to_label = tk.Label(self, text='END', width=7, font='Helvetica 15',
                                  bg='#0D98BA', borderwidth=5, relief='raised')
         self.to_label.grid(row=0, column=1, pady=30)
 
         self.enter_to = tk.Entry(self, width=12, borderwidth=5)
         self.enter_to.grid(row=1, column=1, padx=30)
 
-        the_button = tk.Button(self, text='ENTER', width=10, font='15', bg='#0D98BA',
+        the_button = tk.Button(self, text='ENTER', width=10, font='Helvetica 15', bg='#0D98BA',
                                borderwidth=5, command=lambda: self.show())
         the_button.grid(row=2, column=0, columnspan=2, pady=30)
 
