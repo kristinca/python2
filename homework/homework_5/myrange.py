@@ -6,19 +6,21 @@ class MyRange:
     def __init__(self, number_start, number_end, *args, **kwargs):
         self.number_start = number_start
         self.number_end = number_end
-        self.list1 = [i for i in range(self.number_start, self.number_end+1)]
-        self.it = iter(self.list1)
 
-    def iterator(self, to_do):
-        """Iterator for the numbers from start to end"""
+        self.state = self.number_start
+        self.list1 = [i for i in range(self.number_start, self.number_end + 1)]
 
-        while True:
-            try:
-                next_el = next(self.it)
-            except StopIteration:
-                break
-            else:
-                to_do(next_el)
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        temp_state = self.state
+
+        if self.state > self.number_end:
+            raise StopIteration
+
+        self.state += 1
+        return temp_state
 
 
 class MyApp(tk.Tk):
@@ -32,6 +34,10 @@ class MyApp(tk.Tk):
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
         self.resizable(False, False)
+        self.myrang = MyRange(0,1)
+        self.app_data = {
+            "range_elements": self.myrang.list1
+        }
 
         container = tk.Frame(self)
         container.pack(side="top", fill='both', expand=True)
@@ -74,19 +80,31 @@ class FrameOne(tk.Frame):
                                borderwidth=5, command=lambda: self.show())
         the_button.grid(row=2, column=0, columnspan=2, pady=30)
 
+        self.i = -1
         self.label_show = tk.Label(self)
 
+
     def show(self):
-        self.myrang = MyRange(int(self.enter_from.get()), int(self.enter_to.get()))
-        self.label_show = tk.Label(self, text=self.myrang.list1)
+        self.label_show.destroy()
+        self.myrang1 = MyRange(int(self.enter_from.get()), int(self.enter_to.get()))
+        self.controller.app_data["range_elements"] = self.myrang1.list1
+        self.label_show = tk.Label(self, text=self.myrang1.list1[0], font='bold 12')
         self.label_show.grid(row=3, column=0, columnspan=2, pady=10)
+        self.every5sec()
+
+
+    def every5sec(self):
+        self.i += 1
+        if self.i == len(self.myrang1.list1):
+            return
+        self.label_show['text'] = self.controller.app_data["range_elements"][self.i]
+        self.after(1000, self.every5sec)
 
 
 # def main():
 #     myrang = MyRange(2, 8)
-#     myrang.iterator(print)
-#
-
+#     for i in myrang:
+#         print(i)
 
 if __name__ == '__main__':
     # main()
