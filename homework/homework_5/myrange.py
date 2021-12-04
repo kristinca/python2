@@ -83,15 +83,14 @@ class FrameOne(tk.Frame):
         self.i = -1
         self.label_show = tk.Label(self)
 
-
     def show(self):
-        self.label_show.destroy()
+        self.label_show.forget()
         self.myrang1 = MyRange(int(self.enter_from.get()), int(self.enter_to.get()))
         self.controller.app_data["range_elements"] = self.myrang1.list1
-        self.label_show = tk.Label(self, text=self.myrang1.list1[0], font='bold 12')
+        self.label_show = tk.Label(self, text=self.myrang1.list1[0], font='bold 12', width=10, borderwidth=5,
+                                   relief='sunken')
         self.label_show.grid(row=3, column=0, columnspan=2, pady=10)
         self.every1sec()
-
 
     def every1sec(self):
         self.i += 1
