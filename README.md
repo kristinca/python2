@@ -1,4 +1,4 @@
-Python 2 - let's goo ^^
+Python II - let's goo ^^
 
 
 homework 5 + tkinter:
