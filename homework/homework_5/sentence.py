@@ -19,7 +19,7 @@ class Sentence:
         word = ''
         for el in self.input:
             # if the character is a letter
-            if 155 >= self.sizeof(bytes(ord(el))) >= 98:
+            if el.isalpha():
                 word += el
             elif word:
                 words.append(word)
