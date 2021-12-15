@@ -15,11 +15,15 @@ class Sentence:
 
     def words_maker(self):
 
+        letters_1 = [i for i in range(101, 133)]
+        letters_2 = [i for i in range(141, 173)]
+        letters_3 = letters_1 + letters_2
+
         words = []
         word = ''
         for el in self.input:
             # if the character is a letter
-            if el.isalpha():
+            if ord(el) in letters_3:
                 word += el
             elif word:
                 words.append(word)
